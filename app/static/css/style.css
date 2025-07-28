@@ -1,0 +1,66 @@
+/* Custom styles for the Flask app */
+
+body {
+  background-color: #f8f9fa;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.card {
+  transition: transform 0.2s;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn {
+  border-radius: 6px;
+}
+
+.display-4 {
+  color: #343a40;
+}
+
+.lead {
+  color: #6c757d;
+}
+
+.list-group-item {
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem 0;
+}
+
+.user-card {
+  margin-bottom: 1rem;
+}
+
+.alert {
+  border-radius: 6px;
+}
+
+/* Loading animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

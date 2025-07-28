@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+  <div class="col-md-8 mx-auto text-center">
+    <h1 class="display-4 mb-4">Welcome to Flask GraphQL App</h1>
+    <p class="lead mb-4">
+      A modern Flask application with GraphQL API and MongoDB backend.
+    </p>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">GraphQL API</h5>
+            <p class="card-text">
+              Interactive GraphQL playground for testing queries and mutations.
+            </p>
+            <a href="/graphql" class="btn btn-primary" target="_blank"
+              >Open GraphiQL</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Users</h5>
+            <p class="card-text">
+              Manage users with GraphQL queries and mutations.
+            </p>
+            <button id="loadUsers" class="btn btn-success">Load Users</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">MongoDB</h5>
+            <p class="card-text">
+              Document-based database with flexible schema.
+            </p>
+            <button class="btn btn-info" onclick="showHealthStatus()">
+              Check Health
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="usersList" class="mt-4"></div>
+    <div id="healthStatus" class="mt-4"></div>
+  </div>
+</div>
+
+<script>
+  // Health check function
+  async function showHealthStatus() {
+    const healthDiv = document.getElementById("healthStatus");
+
+    const HEALTH_QUERY = `
+            query {
+                health
+            }
+        `;
+
+    try {
+      const data = await graphqlRequest(HEALTH_QUERY);
+      healthDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <h5>Health Status</h5>
+                    <p>${data.health}</p>
+                </div>
+            `;
+    } catch (error) {
+      healthDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    <h5>Health Check Failed</h5>
+                    <p>Error: ${error.message}</p>
+                </div>
+            `;
+    }
+  }
+</script>
+{% endblock %}
